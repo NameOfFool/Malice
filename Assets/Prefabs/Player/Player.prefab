@@ -142,9 +142,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d7df046236340c4fa5a5963b61a1d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 10
-  JumpForce: 10
+  MaxHP: 100
+  CurrentHP: 100
+  DefaultSpeed: 10
+  DefaultAttackDamage: 5
+  DefaultAttackRange: 1.63
+  DefaultJumpForce: 10
   JumpFallGravityMultiplier: 3
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
   GroundLayer:
     serializedVersion: 2
     m_Bits: 8

@@ -46,6 +46,6 @@ public class EnemyController : Creature
             _animator.SetTrigger("Idle");
         }
         Vector2 direction = _currentTarget - transform.position;
-        _rB.velocity = new Vector2(Mathf.Sign(direction.x) * Speed, _rB.velocity.y);
+        _rB.velocity = new Vector2(Mathf.Sign(direction.x) * DefaultSpeed, _rB.velocity.y);
     }
 }

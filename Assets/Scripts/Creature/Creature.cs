@@ -1,3 +1,4 @@
+using CustomAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,11 +7,12 @@ using UnityEngine.InputSystem;
 public abstract class Creature:MonoBehaviour
 {
     [Header("Creature Properties")]
-    [SerializeField] protected  float HP = 100f;
-    [SerializeField] protected  float Speed = 10f;
-    [SerializeField] protected float AttackDamage = 5f;
-    [SerializeField] protected float AttackRange = 1.63f;
-    [SerializeField] protected float JumpForce = 10f;
+    [SerializeField] protected float MaxHP = 100f;
+    [SerializeField][ReadOnly] protected float CurrentHP = 100f;
+    [SerializeField] protected float DefaultSpeed = 10f;
+    [SerializeField] protected float DefaultAttackDamage = 5f;
+    [SerializeField] protected float DefaultAttackRange = 1.63f;
+    [SerializeField] protected float DefaultJumpForce = 10f;
     [SerializeField][Range(1f, 5f)] protected  float JumpFallGravityMultiplier = 3;
     [SerializeField] protected LayerMask EnemyLayer;
     [Header("Ground Check Properties")]
@@ -32,8 +34,23 @@ public abstract class Creature:MonoBehaviour
     protected bool _groundCheckEnabled = true;
     protected WaitForSeconds _wait;
     protected float _initialGravityScale;
+
+
+    protected ActiveItem _activeItem;
     protected virtual void Awake()
     {
+        AttackAction a = new AttackAction
+        {
+            damageType = DamageType.Stabbing,
+            AttackValue = 10
+        };
+        _activeItem = new ActiveItem
+        {
+            Name ="Def",
+            Description = "Desc",
+            mainAction = a,
+            alternativeAction = new Action()
+        };
         _sR = GetComponent<SpriteRenderer>();
 
         _rB = GetComponent<Rigidbody2D>();
@@ -46,13 +63,25 @@ public abstract class Creature:MonoBehaviour
         _animator = GetComponent<Animator>();
        
     }
-    protected virtual void Attack(InputAction.CallbackContext context)
+    public virtual void MainAction(InputAction.CallbackContext context)
+    {
+        _activeItem.mainAction.DoAction(this);
+    }
+    public virtual void Attack(AttackAction action)
     {
         _animator.SetTrigger("Attack");
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, AttackRange, EnemyLayer);
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, DefaultAttackRange, EnemyLayer);
         foreach (Collider2D enemy in enemies)
         {
-            Destroy(enemy.gameObject);
+            enemy.GetComponent<Creature>().GetDamage(DefaultAttackDamage+action.AttackValue,action.damageType);
+        }
+    }
+    public virtual void GetDamage(float damageValue, DamageType damageType)
+    {
+        CurrentHP -= damageValue;
+        if(CurrentHP <= 0)
+        {
+            Destroy(_collider.gameObject);
         }
     }
     protected virtual bool IsGround()
@@ -97,7 +126,7 @@ public abstract class Creature:MonoBehaviour
     protected virtual void Run()
     {
         Vector2 direction = new Vector2(1f,0f);
-        _rB.velocity = new Vector2(direction.x * Speed,_rB.velocity.y);
+        _rB.velocity = new Vector2(direction.x * DefaultSpeed, _rB.velocity.y);
         
         
     }
@@ -111,7 +140,7 @@ public abstract class Creature:MonoBehaviour
 
         if (IsGround())
         {
-            _rB.velocity += Vector2.up * JumpForce;
+            _rB.velocity += Vector2.up * DefaultJumpForce;
             _jumping = true;
             StartCoroutine(EnableGroundCheckAfterJump());
         }

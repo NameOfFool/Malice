@@ -19,21 +19,11 @@ public class PhysicalPlayerController : Creature
         _actions = new PlayerActions();
         BindInuts();
         
-
     }
     protected void BindInuts()
     {
         _actions.Player_Map.Jump.started += Jump;
-        _actions.Player_Map.Attack.started += Attack;
-    }
-    protected override void Attack(InputAction.CallbackContext context)
-    {
-        _animator.SetTrigger("Attack");
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position,AttackRange,EnemyLayer);
-        foreach(Collider2D enemy in enemies)
-        {
-            Destroy(enemy.gameObject);
-        }
+        _actions.Player_Map.Attack.started += MainAction;
     }
     protected override bool IsGround()
     {
@@ -62,14 +52,14 @@ public class PhysicalPlayerController : Creature
     }
     protected override void Run()
     {
-        _rB.velocity = new Vector2(_actions.Player_Map.Movement.ReadValue<Vector2>().x * Speed, _rB.velocity.y);
+        _rB.velocity = new Vector2(_actions.Player_Map.Movement.ReadValue<Vector2>().x * DefaultSpeed, _rB.velocity.y);
     }
     protected override void Jump(InputAction.CallbackContext context)
     {
         
         if(IsGround())
         {
-            _rB.velocity += Vector2.up * JumpForce;
+            _rB.velocity += Vector2.up * DefaultJumpForce;
             _jumping = true;
             StartCoroutine(EnableGroundCheckAfterJump());
         }
