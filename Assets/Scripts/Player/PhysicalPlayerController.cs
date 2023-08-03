@@ -6,11 +6,13 @@ using UnityEditor;
 using CustomAttributes;
 using UnityEngine.InputSystem;
 using System.Linq;
+using TMPro;
 using UnityEngine.InputSystem.Interactions;
 
 public class PhysicalPlayerController : Creature
 {
    private PlayerActions _actions;
+   private TMP_Text _healthCount;
 
   //  [CustomAttributes.ReadOnly][SerializeField] private bool IsGround;
   protected override void Awake()
