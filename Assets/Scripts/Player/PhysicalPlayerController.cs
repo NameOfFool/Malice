@@ -12,7 +12,9 @@ using UnityEngine.InputSystem.Interactions;
 public class PhysicalPlayerController : Creature
 {
    private PlayerActions _actions;
-   private TMP_Text _healthCount;
+   [Header("Player UI")]
+   [SerializeField]private TMP_Text _healthCount;
+   private float _defaultLength = 380;
 
   //  [CustomAttributes.ReadOnly][SerializeField] private bool IsGround;
   protected override void Awake()
@@ -20,7 +22,16 @@ public class PhysicalPlayerController : Creature
         base.Awake();
         _actions = new PlayerActions();
         BindInuts();
-        
+        SetHealthCount();
+    }
+    public override void GetDamage(float damageValue, DamageType damageType)
+    {
+        base.GetDamage(damageValue, damageType);
+        SetHealthCount();
+    }
+    protected void SetHealthCount()
+    {
+        _healthCount.text = CurrentHP+"";
     }
     protected void BindInuts()
     {
