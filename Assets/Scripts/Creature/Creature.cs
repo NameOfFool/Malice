@@ -39,7 +39,7 @@ public abstract class Creature:MonoBehaviour
     protected ActiveItem _activeItem;
     protected virtual void Awake()
     {
-        AttackAction a = new AttackAction
+        AttackAction a = new()
         {
             damageType = DamageType.Stabbing,
             AttackValue = 10

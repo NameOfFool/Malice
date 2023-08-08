@@ -8,13 +8,15 @@ using UnityEngine.InputSystem;
 using System.Linq;
 using TMPro;
 using UnityEngine.InputSystem.Interactions;
+using UnityEngine.UI;
 
 public class PhysicalPlayerController : Creature
 {
    private PlayerActions _actions;
    [Header("Player UI")]
-   [SerializeField]private TMP_Text _healthCount;
-   private float _defaultLength = 380;
+   [SerializeField] private TMP_Text _healthCount;
+   [SerializeField] private Slider _bar;
+  // private float _defaultLength = 380;
 
   //  [CustomAttributes.ReadOnly][SerializeField] private bool IsGround;
   protected override void Awake()
@@ -22,6 +24,7 @@ public class PhysicalPlayerController : Creature
         base.Awake();
         _actions = new PlayerActions();
         BindInuts();
+        CurrentHP = 50f;
         SetHealthCount();
     }
     public override void GetDamage(float damageValue, DamageType damageType)
@@ -32,6 +35,7 @@ public class PhysicalPlayerController : Creature
     protected void SetHealthCount()
     {
         _healthCount.text = CurrentHP+"";
+        _bar.value = CurrentHP/100f;
     }
     protected void BindInuts()
     {

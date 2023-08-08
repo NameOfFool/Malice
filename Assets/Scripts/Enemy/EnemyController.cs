@@ -17,16 +17,16 @@ public class EnemyController : Creature
 
     protected override void FixedUpdate()
     {
-        if(_animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
-            _rB.velocity = new Vector2(0,_rB.velocity.y);
+            _rB.velocity = new Vector2(0, _rB.velocity.y);
             return;
         }
         Run();
     }
     protected override void Run()
     {
-        if(_currentTarget == pointA.position)
+        if (_currentTarget.x - transform.localPosition.x <= 0)
         {
             _sR.flipX = true;
         }
@@ -34,14 +34,36 @@ public class EnemyController : Creature
         {
             _sR.flipX = false;
         }
-        if(transform.position.x <= pointA.position.x) 
+        if (Mathf.Abs(_currentTarget.x - transform.localPosition.x) <= _sR.size.x)
+        {
+            if (_currentTarget == pointB.position)
+                _currentTarget = pointA.position;
+            else if (_currentTarget == pointA.position)
+                _currentTarget = pointB.position;
+            _animator.SetTrigger("Idle");
+        }
+        Debug.Log(_currentTarget);
+        Vector2 direction = _currentTarget - transform.position;
+        _rB.velocity = new Vector2(Mathf.Sign(direction.x) * DefaultSpeed, _rB.velocity.y);
+    }
+    protected void Run1()
+    {
+        if (_currentTarget == pointA.position)
+        {
+            _sR.flipX = true;
+        }
+        else
+        {
+            _sR.flipX = false;
+        }
+        if (transform.position.x <= pointA.position.x)
         {
             _currentTarget = pointB.position;
             _animator.SetTrigger("Idle");
 
         }
         else if (transform.position.x >= pointB.position.x)
-        { 
+        {
             _currentTarget = pointA.position;
             _animator.SetTrigger("Idle");
         }

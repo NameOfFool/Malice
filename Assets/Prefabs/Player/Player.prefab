@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d7df046236340c4fa5a5963b61a1d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 100
+  MaxHP: 50
   CurrentHP: 100
   DefaultSpeed: 10
   DefaultAttackDamage: 5
@@ -158,6 +158,8 @@ MonoBehaviour:
   GroundCheckHeight: 0.05
   GhargeJumpPower: 20
   DisableCGTime: 0.025
+  _healthCount: {fileID: 0}
+  _bar: {fileID: 0}
 --- !u!61 &1858237638887508457
 BoxCollider2D:
   m_ObjectHideFlags: 0
