@@ -1,73 +1,70 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading.Tasks;
 
-public class EnemyController : Creature
+public class EnemyController : MonoBehaviour
 {
     [Header("Enemy Controller")]
-    [SerializeField] protected Transform pointA;
-    [SerializeField] protected Transform pointB;
+    
+    [SerializeField] private Transform pointA;
+    [SerializeField] private Transform pointB;
+    private Animator animator;
+    private SpriteRenderer sR;
 
     private Vector3 _currentTarget;
-    protected override void Awake()
+    
+    private bool _isWaiting = false;
+    public  void Awake()
     {
-        base.Awake();
         _currentTarget = pointA.position;
+        
     }
 
-    protected override void FixedUpdate()
+    public void FixedUpdate()
     {
-        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        if (!_isWaiting)
+            Patrol();
+    }
+    public async void Patrol()
+    {
+        if (Mathf.Abs(_currentTarget.x-transform.position.x)<=sR.size.x/2)
         {
-            _rB.velocity = new Vector2(0, _rB.velocity.y);
-            return;
+            if (_currentTarget == pointB.position || _currentTarget == pointA.position)
+            {
+                await Wait(1);
+            }
         }
         Run();
     }
-    protected override void Run()
+    private void ChangeTarget()
     {
-        if (_currentTarget.x - transform.localPosition.x <= 0)
-        {
-            _sR.flipX = true;
-        }
-        else
-        {
-            _sR.flipX = false;
-        }
-        if (Mathf.Abs(_currentTarget.x - transform.localPosition.x) <= _sR.size.x)
-        {
-            if (_currentTarget == pointB.position)
-                _currentTarget = pointA.position;
-            else if (_currentTarget == pointA.position)
-                _currentTarget = pointB.position;
-            _animator.SetTrigger("Idle");
-        }
-        Debug.Log(_currentTarget);
-        Vector2 direction = _currentTarget - transform.position;
-        _rB.velocity = new Vector2(Mathf.Sign(direction.x) * DefaultSpeed, _rB.velocity.y);
-    }
-    protected void Run1()
-    {
-        if (_currentTarget == pointA.position)
-        {
-            _sR.flipX = true;
-        }
-        else
-        {
-            _sR.flipX = false;
-        }
-        if (transform.position.x <= pointA.position.x)
-        {
-            _currentTarget = pointB.position;
-            _animator.SetTrigger("Idle");
-
-        }
-        else if (transform.position.x >= pointB.position.x)
-        {
+        if (_currentTarget == pointB.position)
             _currentTarget = pointA.position;
-            _animator.SetTrigger("Idle");
+        else if (_currentTarget == pointA.position)
+            _currentTarget = pointB.position;
+    }
+    public void Run()
+    {
+        if(!animator.GetBool("isRunning"))
+        {
+            animator.SetBool("isRunning", true);
         }
         Vector2 direction = _currentTarget - transform.position;
-        _rB.velocity = new Vector2(Mathf.Sign(direction.x) * DefaultSpeed, _rB.velocity.y);
+    }
+    /// <summary>
+    /// The object waits the specified number of seconds, then changes the target and start running 
+    /// </summary>
+    /// <param name="seconds">Specified number of second</param>
+    private async Task<bool> Wait(int seconds)
+    {
+       /* _moveInput.x = 0;
+        animator.SetBool("isRunning", false);
+        _isWaiting = true;
+        await Task.Delay(seconds * 1000);
+        ChangeTarget();
+        animator.SetBool("isRunning", true);
+        _isWaiting = false;*/
+        return true;
     }
 }

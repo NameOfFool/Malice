@@ -27,7 +27,7 @@ public class Resistance
 }
 public class Action
 {
-    public virtual void DoAction(Creature itemUser)
+    public virtual void DoAction()//Creature itemUser)
     {
 
     }
@@ -39,9 +39,9 @@ public class Action
 
 public class AttackAction:Action
 {
-    public override void DoAction(Creature itemUser)
+    public override void DoAction()//Creature itemUser)
     {
-        itemUser.Attack(this);
+        //itemUser.Attack(this);
     }
     public float AttackValue { get; set; }
     public DamageType damageType { get; set; }
