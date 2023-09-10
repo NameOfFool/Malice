@@ -94,7 +94,6 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
     public bool CanMove
     {
         get

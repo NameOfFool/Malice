@@ -5,66 +5,47 @@ using System.Threading.Tasks;
 
 public class EnemyController : MonoBehaviour
 {
-    [Header("Enemy Controller")]
-    
-    [SerializeField] private Transform pointA;
-    [SerializeField] private Transform pointB;
-    private Animator animator;
-    private SpriteRenderer sR;
+    public float DefaultSpeed = 10f;
+    public float DefaultAttackDamage = 5f;
+    public float DefaultAttackRange = 1.63f;
+    public float DefaultJumpForce = 10f;
 
-    private Vector3 _currentTarget;
-    
-    private bool _isWaiting = false;
-    public  void Awake()
-    {
-        _currentTarget = pointA.position;
-        
-    }
+    Rigidbody2D rb;
 
-    public void FixedUpdate()
+    public enum WalkableDirection { Right, Left }
+
+    private WalkableDirection _walkDirection;
+    private Vector2 walkDirectionVector;
+
+    public WalkableDirection WalkDirection
     {
-        if (!_isWaiting)
-            Patrol();
-    }
-    public async void Patrol()
-    {
-        if (Mathf.Abs(_currentTarget.x-transform.position.x)<=sR.size.x/2)
+        get => _walkDirection;
+        set
         {
-            if (_currentTarget == pointB.position || _currentTarget == pointA.position)
+            if(_walkDirection != value)
             {
-                await Wait(1);
+                gameObject.transform.localScale = new Vector2(gameObject.transform.localScale.x * -1, gameObject.transform.localScale.y);
+
+                if(value == WalkableDirection.Right)
+                {
+                    walkDirectionVector = Vector2.right;
+                }
+                else if(value == WalkableDirection.Left)
+                {
+                    walkDirectionVector = Vector2.left;
+                }
             }
+            _walkDirection = value;
         }
-        Run();
     }
-    private void ChangeTarget()
+
+    private void Awake()
     {
-        if (_currentTarget == pointB.position)
-            _currentTarget = pointA.position;
-        else if (_currentTarget == pointA.position)
-            _currentTarget = pointB.position;
+        rb = GetComponent<Rigidbody2D>();
     }
-    public void Run()
+    private void FixedUpdate()
     {
-        if(!animator.GetBool("isRunning"))
-        {
-            animator.SetBool("isRunning", true);
-        }
-        Vector2 direction = _currentTarget - transform.position;
+        rb.velocity = new Vector2(DefaultSpeed * Vector2.right.x, rb.velocity.y);
     }
-    /// <summary>
-    /// The object waits the specified number of seconds, then changes the target and start running 
-    /// </summary>
-    /// <param name="seconds">Specified number of second</param>
-    private async Task<bool> Wait(int seconds)
-    {
-       /* _moveInput.x = 0;
-        animator.SetBool("isRunning", false);
-        _isWaiting = true;
-        await Task.Delay(seconds * 1000);
-        ChangeTarget();
-        animator.SetBool("isRunning", true);
-        _isWaiting = false;*/
-        return true;
-    }
+
 }
