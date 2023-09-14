@@ -26,12 +26,11 @@ public class PlayerController : MonoBehaviour
     public float DisableCGTime;
 
     private SpriteRenderer _sr;
-    private Animator _animator;
-    private BoxCollider2D _collider;
-    private Rigidbody2D _rb;
+    private Animator animator;
+    private Rigidbody2D rb;
 
-    private Vector2 _moveInput;
-    TouchingDirections _touchingDirections;
+    private Vector2 moveInput;
+    private TouchingDirections touchingDirections;
 
     private bool _isFacingRight = true;
     public bool IsFacingRight
@@ -61,7 +60,7 @@ public class PlayerController : MonoBehaviour
         private set
         {
             _isMoving = value;
-            _animator.SetBool(AnimatorStrings.isMoving, value);
+            animator.SetBool(AnimatorStrings.isMoving, value);
         }
     }
 
@@ -71,9 +70,9 @@ public class PlayerController : MonoBehaviour
         {
             if (CanMove)
             {
-                if (isMoving)
+                if (isMoving && !touchingDirections.IsOnWall && !touchingDirections.IsOnCeiling)
                 {
-                    if (_touchingDirections.IsGrounded)
+                    if (touchingDirections.IsGrounded)
                     {
                         return DefaultSpeed;
                     }
@@ -98,60 +97,58 @@ public class PlayerController : MonoBehaviour
     {
         get
         {
-            return _animator.GetBool(AnimatorStrings.canMove);
+            return animator.GetBool(AnimatorStrings.canMove);
         }
     }
     public void Awake()
     {
         _sr = GetComponent<SpriteRenderer>();
 
-        _rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
 
-        _collider = GetComponent<BoxCollider2D>();
+        touchingDirections = GetComponent<TouchingDirections>();
 
-        _touchingDirections = GetComponent<TouchingDirections>();
-
-        _animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
 
         Physics2D.IgnoreLayerCollision(6, 7);
 
     }
     public void FixedUpdate()
     {
-        _rb.velocity = new(_moveInput.x * CurrentMoveSpeed, _rb.velocity.y);
-        _animator.SetFloat(AnimatorStrings.yVelocity, _rb.velocity.y);
+        rb.velocity = new(moveInput.x * CurrentMoveSpeed, rb.velocity.y);
+        animator.SetFloat(AnimatorStrings.yVelocity, rb.velocity.y);
         Flip();
     }
     private void Flip()
     {
-        if (_moveInput.x > 0 && !IsFacingRight)
+        if (moveInput.x > 0 && !IsFacingRight)
         {
             IsFacingRight = true;
         }
-        else if (_moveInput.x < 0 && IsFacingRight)
+        else if (moveInput.x < 0 && IsFacingRight)
         {
             IsFacingRight = false;
         }
     }
     public void onMove(InputAction.CallbackContext context)
     {
-        _moveInput = context.ReadValue<Vector2>();
-        isMoving = _moveInput != Vector2.zero;
+        moveInput = context.ReadValue<Vector2>();
+        isMoving = moveInput != Vector2.zero;
     }
     public void onJump(InputAction.CallbackContext context)
     {
         //TODO check HP
-        if (context.started && _touchingDirections.IsGrounded && CanMove)
+        if (context.started && touchingDirections.IsGrounded && CanMove)
         {
-            _animator.SetTrigger(AnimatorStrings.jumpTrigger);
-            _rb.velocity += Vector2.up * DefaultJumpForce;
+            animator.SetTrigger(AnimatorStrings.jumpTrigger);
+            rb.velocity += Vector2.up * DefaultJumpForce;
         }
     }
     public void onAttack(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            _animator.SetTrigger(AnimatorStrings.attackTrigger);
+            animator.SetTrigger(AnimatorStrings.attackTrigger);
         }
     }
 }

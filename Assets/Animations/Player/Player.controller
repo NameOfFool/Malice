@@ -111,9 +111,6 @@ AnimatorStateMachine:
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: 7013433753876052016}
-    second:
-    - {fileID: -9122137895542057606}
   - first: {fileID: 9055092837821737524}
     second:
     - {fileID: 7270588291822821837}
@@ -122,6 +119,9 @@ AnimatorStateMachine:
   - first: {fileID: -8362622320111202082}
     second:
     - {fileID: 3035145005341710894}
+  - first: {fileID: 7013433753876052016}
+    second:
+    - {fileID: -9122137895542057606}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
@@ -419,6 +419,18 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 1
+    m_Controller: {fileID: 0}
+  - m_Name: isOnWall
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: isOnCeiling
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
     m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
