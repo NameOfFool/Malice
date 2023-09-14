@@ -7,9 +7,10 @@ public class EnemyController : MonoBehaviour
 {
     public float DefaultSpeed = 5f;
     public float DefaultJumpForce = 10f;
+    public float WalkStopRate = 0.05f;
 
     private Rigidbody2D rb;
-    [SerializeField] private HitBox hitbox;
+    [SerializeField] private DetectionZone hitbox;
 
     public enum WalkableDirection { Right, Left }
 
@@ -56,7 +57,7 @@ public class EnemyController : MonoBehaviour
     }
     public float CurrentMoveSpeed
     {
-        get=>CanMove?DefaultSpeed * walkDirectionVector.x:0;
+        get=>CanMove?DefaultSpeed * walkDirectionVector.x:Mathf.Lerp(rb.velocity.x, 0, WalkStopRate);
     }
     private void Awake()
     {
@@ -70,7 +71,7 @@ public class EnemyController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (touchingDirections.IsOnWall && touchingDirections.IsGrounded)
+        if (touchingDirections.IsOnWall && touchingDirections.IsGrounded && CanMove)
         {
             FlipDirection();
         }

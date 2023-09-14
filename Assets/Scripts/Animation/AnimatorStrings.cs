@@ -16,5 +16,6 @@ internal class AnimatorStrings
     internal static string isOnCeiling = "isOnCeiling";
     internal static string isOnWall = "isOnWall";
     internal static string hasTarget = "hasTarget";
+    internal static string isHit = "isHit";
 }
 

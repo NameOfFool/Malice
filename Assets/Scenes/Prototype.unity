@@ -690,6 +690,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 184828127344033789, guid: b70574704d78b364fb0a0888951032c1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1885686756676378047, guid: b70574704d78b364fb0a0888951032c1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.64
@@ -733,6 +737,14 @@ PrefabInstance:
     - target: {fileID: 3723891779109088888, guid: b70574704d78b364fb0a0888951032c1, type: 3}
       propertyPath: m_Name
       value: Mr.Woman
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430246741076679470, guid: b70574704d78b364fb0a0888951032c1, type: 3}
+      propertyPath: m_Name
+      value: DetectionZone
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430246741076679470, guid: b70574704d78b364fb0a0888951032c1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitBox : MonoBehaviour
+public class DetectionZone : MonoBehaviour
 {
     // private Collider2D collider;
     public List<Collider2D> detectedColliders = new List<Collider2D>();

@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 moveInput;
     private TouchingDirections touchingDirections;
+    private Damageable damageable;
 
     private bool _isFacingRight = true;
     public bool IsFacingRight
@@ -100,11 +101,20 @@ public class PlayerController : MonoBehaviour
             return animator.GetBool(AnimatorStrings.canMove);
         }
     }
+    public bool IsAlive
+    {
+        get
+        {
+            return animator.GetBool(AnimatorStrings.isAlive);
+        }
+    }
     public void Awake()
     {
         _sr = GetComponent<SpriteRenderer>();
 
         rb = GetComponent<Rigidbody2D>();
+
+        damageable = GetComponent<Damageable>();
 
         touchingDirections = GetComponent<TouchingDirections>();
 
@@ -115,9 +125,9 @@ public class PlayerController : MonoBehaviour
     }
     public void FixedUpdate()
     {
+        
         rb.velocity = new(moveInput.x * CurrentMoveSpeed, rb.velocity.y);
         animator.SetFloat(AnimatorStrings.yVelocity, rb.velocity.y);
-        Flip();
     }
     private void Flip()
     {
@@ -133,7 +143,13 @@ public class PlayerController : MonoBehaviour
     public void onMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
-        isMoving = moveInput != Vector2.zero;
+        if(IsAlive)
+        {
+            isMoving = moveInput != Vector2.zero;
+            Flip();
+        }
+        else
+            isMoving = false;
     }
     public void onJump(InputAction.CallbackContext context)
     {
@@ -150,5 +166,9 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetTrigger(AnimatorStrings.attackTrigger);
         }
+    }
+    public void onHit(float damage, Vector2 knockback)
+    {
+        rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
     }
 }
