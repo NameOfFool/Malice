@@ -156,7 +156,6 @@ MonoBehaviour:
   DefaultAttackDamage: 5
   DefaultAttackRange: 1.63
   DefaultJumpForce: 10
-  health: {fileID: 0}
   DefaultAirWalkSpeed: 7
   JumpFallGravityMultiplier: 5
   GhargeJumpPower: 0
@@ -432,4 +431,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 25
-  knockback: {x: 0, y: 0}
+  knockback: {x: 5, y: 2}

@@ -57,8 +57,10 @@ public class EnemyController : MonoBehaviour
     }
     public float CurrentMoveSpeed
     {
-        get=>CanMove?DefaultSpeed * walkDirectionVector.x:Mathf.Lerp(rb.velocity.x, 0, WalkStopRate);
+        get => CanMove ? DefaultSpeed * walkDirectionVector.x : Mathf.Lerp(rb.velocity.x, 0, WalkStopRate);
     }
+    public bool LockVelocity { get => animator.GetBool(AnimatorStrings.lockVelocity); }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -75,7 +77,8 @@ public class EnemyController : MonoBehaviour
         {
             FlipDirection();
         }
-        rb.velocity = new Vector2(CurrentMoveSpeed, rb.velocity.y);
+        if (!LockVelocity)
+            rb.velocity = new Vector2(CurrentMoveSpeed, rb.velocity.y);
     }
     private void FlipDirection()
     {

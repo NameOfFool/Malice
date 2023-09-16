@@ -2,13 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
-using UnityEditor;
-using CustomAttributes;
 using UnityEngine.InputSystem;
-using System.Linq;
-using TMPro;
-using UnityEngine.InputSystem.Interactions;
-using UnityEngine.UI;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,7 +12,6 @@ public class PlayerController : MonoBehaviour
     public float DefaultAttackDamage = 5f;
     public float DefaultAttackRange = 1.63f;
     public float DefaultJumpForce = 10f;
-    public PlayerHealth health;
     public float DefaultAirWalkSpeed = 7f;
     [Range(1f, 5f)] public float JumpFallGravityMultiplier = 3;
 
@@ -31,7 +25,6 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 moveInput;
     private TouchingDirections touchingDirections;
-    private Damageable damageable;
 
     private bool _isFacingRight = true;
     public bool IsFacingRight
@@ -108,13 +101,17 @@ public class PlayerController : MonoBehaviour
             return animator.GetBool(AnimatorStrings.isAlive);
         }
     }
+
+    public bool LockVelocity
+     
+     { get => animator.GetBool(AnimatorStrings.lockVelocity); }
+
     public void Awake()
     {
         _sr = GetComponent<SpriteRenderer>();
 
         rb = GetComponent<Rigidbody2D>();
 
-        damageable = GetComponent<Damageable>();
 
         touchingDirections = GetComponent<TouchingDirections>();
 
@@ -125,8 +122,8 @@ public class PlayerController : MonoBehaviour
     }
     public void FixedUpdate()
     {
-        
-        rb.velocity = new(moveInput.x * CurrentMoveSpeed, rb.velocity.y);
+        if(!LockVelocity)
+            rb.velocity = new(moveInput.x * CurrentMoveSpeed, rb.velocity.y);
         animator.SetFloat(AnimatorStrings.yVelocity, rb.velocity.y);
     }
     private void Flip()
@@ -167,7 +164,7 @@ public class PlayerController : MonoBehaviour
             animator.SetTrigger(AnimatorStrings.attackTrigger);
         }
     }
-    public void onHit(float damage, Vector2 knockback)
+    public void onHit(float damage, Vector2 knockback)//TODO rework
     {
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
     }
