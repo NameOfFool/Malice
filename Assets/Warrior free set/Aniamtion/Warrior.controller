@@ -169,12 +169,12 @@ AnimatorStateMachine:
   - {fileID: 6745404068080022750}
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: -9171072665182872603}
-    second:
-    - {fileID: 7492907825860913735}
   - first: {fileID: 8654467860466419251}
     second:
     - {fileID: -3611166744284408141}
+  - first: {fileID: -9171072665182872603}
+    second:
+    - {fileID: 7492907825860913735}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: -160, y: 120, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
@@ -358,6 +358,18 @@ AnimatorController:
     m_DefaultBool: 1
     m_Controller: {fileID: 0}
   - m_Name: isHit
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: hit
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: lockVelocity
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -608,11 +620,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7c8f79401ce8884497c6a4977fda1ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boolName: canMove
+  boolName: lockVelocity
   updateOnState: 1
   updateOnStateMachine: 0
-  valueOnEnter: 0
-  valueOnExit: 1
+  valueOnEnter: 1
+  valueOnExit: 0
 --- !u!1102 &4054845936075069209
 AnimatorState:
   serializedVersion: 6
@@ -779,7 +791,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: isHit
+    m_ConditionEvent: hit
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: isAlive

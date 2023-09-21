@@ -132,17 +132,17 @@ AnimatorStateMachine:
   - {fileID: -3812930506925661858}
   m_EntryTransitions: []
   m_StateMachineTransitions:
+  - first: {fileID: 9055092837821737524}
+    second:
+    - {fileID: 7270588291822821837}
+    - {fileID: -4900097760425115775}
+    - {fileID: 8301670585351599998}
   - first: {fileID: -8362622320111202082}
     second:
     - {fileID: 3035145005341710894}
   - first: {fileID: 7013433753876052016}
     second:
     - {fileID: -9122137895542057606}
-  - first: {fileID: 9055092837821737524}
-    second:
-    - {fileID: 7270588291822821837}
-    - {fileID: -4900097760425115775}
-    - {fileID: 8301670585351599998}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
@@ -485,6 +485,18 @@ AnimatorController:
     m_DefaultBool: 1
     m_Controller: {fileID: 0}
   - m_Name: isHit
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: hit
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: lockVelocity
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
