@@ -112,7 +112,6 @@ public class PlayerController : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
 
-
         touchingDirections = GetComponent<TouchingDirections>();
 
         animator = GetComponent<Animator>();
@@ -124,6 +123,7 @@ public class PlayerController : MonoBehaviour
     {
         if(!LockVelocity)
             rb.velocity = new(moveInput.x * CurrentMoveSpeed, rb.velocity.y);
+
         animator.SetFloat(AnimatorStrings.yVelocity, rb.velocity.y);
     }
     private void Flip()

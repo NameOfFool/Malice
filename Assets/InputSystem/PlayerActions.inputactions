@@ -36,7 +36,7 @@
             "bindings": [
                 {
                     "name": "2D Vector",
-                    "id": "62b17e82-99d3-4195-b55c-3b85683861ef",
+                    "id": "555b2650-ec3f-4bff-a57b-d96405bbcfb1",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -47,44 +47,44 @@
                 },
                 {
                     "name": "up",
-                    "id": "d9ae292c-c395-4fbc-a7cb-ea151e166455",
+                    "id": "88eeb814-eeae-4051-b07f-d549996fda02",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard",
+                    "groups": "KbM",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "down",
-                    "id": "9ebaabe0-5a6a-49bb-ac44-8f160ebe0a25",
+                    "id": "1fb0a6ca-7377-4c17-924d-9dbcbc7c7aad",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard",
+                    "groups": "KbM",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "left",
-                    "id": "00ac1b17-3c95-41ca-9148-c42b1fbcb5d3",
+                    "id": "e07915bf-b859-4ecf-9b70-e9970fd135fe",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard",
+                    "groups": "KbM",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "right",
-                    "id": "b031b8ec-a010-4eed-a105-2d044d566ad5",
+                    "id": "eb301734-ec5a-4fba-82c0-071cfbca6dbf",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard",
+                    "groups": "KbM",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -102,8 +102,8 @@
                 },
                 {
                     "name": "",
-                    "id": "7a7ef03f-aa84-4a0e-a8ef-c92469b70615",
-                    "path": "<Mouse>/leftButton",
+                    "id": "75d4a6b6-8fd9-4d79-afea-b2a4d777719b",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -113,8 +113,8 @@
                 },
                 {
                     "name": "",
-                    "id": "75d4a6b6-8fd9-4d79-afea-b2a4d777719b",
-                    "path": "<Keyboard>/e",
+                    "id": "8217af88-c018-4d9d-8c54-cdc1d54a0c76",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -127,11 +127,16 @@
     ],
     "controlSchemes": [
         {
-            "name": "Keyboard",
-            "bindingGroup": "Keyboard",
+            "name": "KbM",
+            "bindingGroup": "KbM",
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
                     "isOptional": false,
                     "isOR": false
                 }

@@ -200,7 +200,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: c496b811-718f-4fce-9d9a-28a656a6e90f
-    m_ActionName: Player_Map/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+    m_ActionName: Player_Map/Movement
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5303801838374587216}
@@ -216,7 +216,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 64d34001-95eb-41e5-9809-eabda0ba3b96
-    m_ActionName: Player_Map/Jump[/Keyboard/space]
+    m_ActionName: Player_Map/Jump
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5303801838374587216}
@@ -232,7 +232,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: d2458e2e-c770-4bce-a6bf-04980c2c8a05
-    m_ActionName: Player_Map/Attack[/Mouse/leftButton]
+    m_ActionName: Player_Map/Attack[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player_Map
@@ -321,7 +321,7 @@ MonoBehaviour:
       - m_Target: {fileID: 5303801838374587216}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: onHit
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
