@@ -60,6 +60,11 @@ public class EnemyController : MonoBehaviour
         get => CanMove ? DefaultSpeed * walkDirectionVector.x : Mathf.Lerp(rb.velocity.x, 0, WalkStopRate);
     }
     public bool LockVelocity { get => animator.GetBool(AnimatorStrings.lockVelocity); }
+    public float AttackCD //CoolDown
+    {
+        get => animator.GetFloat(AnimatorStrings.attackCD);
+        set => animator.SetFloat(AnimatorStrings.attackCD, Mathf.Max(0,value));
+    } 
 
     private void Awake()
     {
@@ -70,10 +75,11 @@ public class EnemyController : MonoBehaviour
     private void Update()
     {
         HasTarget = hitbox.detectedColliders.Count > 0;
+        AttackCD -= Time.deltaTime;
     }
     private void FixedUpdate()
     {
-        if (touchingDirections.IsOnWall && touchingDirections.IsGrounded && CanMove)
+        if ((touchingDirections.IsOnWall) && touchingDirections.IsGrounded && CanMove)
         {
             FlipDirection();
         }

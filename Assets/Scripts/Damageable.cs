@@ -82,6 +82,5 @@ public class Damageable : MonoBehaviour
     public void onHit(float damage, Vector2 knockback)
     {
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
-        Debug.Log(knockback);
     }
 }

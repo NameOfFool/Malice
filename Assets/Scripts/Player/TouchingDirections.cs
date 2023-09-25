@@ -16,6 +16,7 @@ public class TouchingDirections : MonoBehaviour
 
     private RaycastHit2D[] groundHits = new RaycastHit2D[5];
     private RaycastHit2D[] wallHits = new RaycastHit2D[5];
+    private RaycastHit2D[] cliffHits = new RaycastHit2D[5];
     private RaycastHit2D[] ceilingHits = new RaycastHit2D[5];
 
     private bool _isGrounded = true;

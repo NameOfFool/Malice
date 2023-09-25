@@ -19,5 +19,6 @@ internal class AnimatorStrings
     internal static string isHit = "isHit";
     internal static string hit = "hit";
     internal static string lockVelocity = "lockVelocity";
+    internal static string attackCD = "attackCD";
 }
 
