@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Threading.Tasks;
+using UnityEngine.Events;
 
 public class EnemyController : MonoBehaviour
 {
@@ -98,7 +99,14 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            Debug.Log("Unexpected walkable direction");
+            Debug.LogError("Unexpected walkable direction");
+        }
+    }
+    public void onNoGroundDetected()
+    {
+        if(touchingDirections.IsGrounded)
+        {
+            FlipDirection();
         }
     }
 

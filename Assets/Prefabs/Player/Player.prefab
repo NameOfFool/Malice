@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8744762265470690816}
   - component: {fileID: 5166190998864196825}
   - component: {fileID: 1980333873763433164}
-  - component: {fileID: 5535087016778371069}
+  - component: {fileID: 25943450582316100}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -302,7 +302,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0.018702984, y: -0.09350902}
   m_Size: {x: 0.6620474, y: 1.7463151}
   m_Direction: 0
---- !u!114 &5535087016778371069
+--- !u!114 &25943450582316100
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -311,15 +311,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2089540031642237468}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83aa390b3f5b17a4a8c90ef9f9f1b795, type: 3}
+  m_Script: {fileID: 11500000, guid: 09f2eb9fe21523e4ca8296e8eea1c1d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHP: 100
   damageableHit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5303801838374587216}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+      - m_Target: {fileID: 25943450582316100}
+        m_TargetAssemblyTypeName: PlayerHealth, Assembly-CSharp
         m_MethodName: onHit
         m_Mode: 0
         m_Arguments:
@@ -331,6 +331,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   invincibilityTimer: 0.25
+  healthCount: {fileID: 0}
+  bar: {fileID: 0}
 --- !u!1 &6487028289978676241
 GameObject:
   m_ObjectHideFlags: 0

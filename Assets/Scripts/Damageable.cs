@@ -5,11 +5,11 @@ using UnityEngine.Events;
 
 public class Damageable : MonoBehaviour
 {
-    [SerializeField] private float _maxHP = 100;
-    private float _currentHP;
+    [SerializeField] protected float _maxHP = 100;
+    protected float _currentHP;
     public UnityEvent<float, Vector2> damageableHit;
-    private Rigidbody2D rb;
-    private Animator animator;
+    protected Rigidbody2D rb;
+    protected Animator animator;
     public float MaxHP { get => _maxHP; set => _maxHP = value; }
     public float CurrentHP
     {
@@ -23,7 +23,7 @@ public class Damageable : MonoBehaviour
             }
         }
     }
-    private bool _isAlive = true;
+    protected bool _isAlive = true;
     public bool IsAlive
     {
         get => _isAlive;
@@ -38,7 +38,7 @@ public class Damageable : MonoBehaviour
         get;
         set;
     }
-    private float timeSinceHit;
+    protected float timeSinceHit;
     public float invincibilityTimer = 0.25f;
     public bool isHit
     {
@@ -46,13 +46,13 @@ public class Damageable : MonoBehaviour
         set => animator.SetBool(AnimatorStrings.isHit, value);
     }
 
-    void Awake()
+    protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         _currentHP = MaxHP;
     }
-    private void Update()
+    protected virtual void Update()
     {
         if (IsInvincible)
         {
@@ -64,11 +64,12 @@ public class Damageable : MonoBehaviour
             timeSinceHit += Time.deltaTime;
         }
     }
-    public bool Hit(float damage, Vector2 knockback) //TODO AttackAction
+    public bool Hit(float damage, Vector2 knockback, Vector3 sourcePosition) //TODO AttackAction
     {
         if (IsAlive && !IsInvincible)
         {
             CurrentHP -= damage;
+            knockback = sourcePosition.x < transform.position.x ? knockback * Vector2.left : knockback;
             damageableHit?.Invoke(damage, knockback);
             IsInvincible = true;
             animator.SetTrigger(AnimatorStrings.hit);
@@ -79,7 +80,7 @@ public class Damageable : MonoBehaviour
             return false;
         }
     }
-    public void onHit(float damage, Vector2 knockback)
+    public virtual void onHit(float damage, Vector2 knockback)
     {
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
     }

@@ -164,8 +164,4 @@ public class PlayerController : MonoBehaviour
             animator.SetTrigger(AnimatorStrings.attackTrigger);
         }
     }
-    public void onHit(float damage, Vector2 knockback)//TODO rework
-    {
-        rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
-    }
 }

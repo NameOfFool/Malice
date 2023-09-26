@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &69771835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -696,11 +696,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1885686756676378047, guid: b70574704d78b364fb0a0888951032c1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.64
+      value: -19.29
       objectReference: {fileID: 0}
     - target: {fileID: 1885686756676378047, guid: b70574704d78b364fb0a0888951032c1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.17
+      value: 0.14
       objectReference: {fileID: 0}
     - target: {fileID: 1885686756676378047, guid: b70574704d78b364fb0a0888951032c1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -744,6 +744,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7430246741076679470, guid: b70574704d78b364fb0a0888951032c1, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7839365899800626021, guid: b70574704d78b364fb0a0888951032c1, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2308,7 +2312,7 @@ RectTransform:
   m_Father: {fileID: 1031700219}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2630,6 +2634,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 25943450582316100, guid: fd303bc1cec25b348b9a50d047c8e7fb, type: 3}
+      propertyPath: bar
+      value: 
+      objectReference: {fileID: 1031700220}
+    - target: {fileID: 25943450582316100, guid: fd303bc1cec25b348b9a50d047c8e7fb, type: 3}
+      propertyPath: healthCount
+      value: 
+      objectReference: {fileID: 433907035}
     - target: {fileID: 2089540031642237462, guid: fd303bc1cec25b348b9a50d047c8e7fb, type: 3}
       propertyPath: m_RootOrder
       value: 1

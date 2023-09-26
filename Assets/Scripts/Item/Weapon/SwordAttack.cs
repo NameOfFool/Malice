@@ -10,7 +10,7 @@ public class SwordAttack : MonoBehaviour
         Damageable damageable = other.GetComponent<Damageable>();
         if(damageable != null)
         {
-            damageable.Hit(damage, knockback);
+            damageable.Hit(damage, knockback, transform.position);
         }
     }
 }
