@@ -9,20 +9,12 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Player Properties")]
     public float DefaultSpeed = 10f;
-    public float DefaultAttackDamage = 5f;
-    public float DefaultAttackRange = 1.63f;
     public float DefaultJumpForce = 10f;
     public float DefaultAirWalkSpeed = 7f;
-    [Range(1f, 5f)] public float JumpFallGravityMultiplier = 3;
-
-    [Header("Ground Check Properties")]
-    public float GhargeJumpPower;
-    public float DisableCGTime;
-
     private SpriteRenderer _sr;
     private Animator animator;
     private Rigidbody2D rb;
-
+    private PlayerInput playerInput;
     private Vector2 moveInput;
     private TouchingDirections touchingDirections;
 
@@ -112,6 +104,8 @@ public class PlayerController : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
 
+        playerInput = GetComponent<PlayerInput>();
+
         touchingDirections = GetComponent<TouchingDirections>();
 
         animator = GetComponent<Animator>();
@@ -150,7 +144,6 @@ public class PlayerController : MonoBehaviour
     }
     public void onJump(InputAction.CallbackContext context)
     {
-        //TODO check HP
         if (context.started && touchingDirections.IsGrounded && CanMove)
         {
             animator.SetTrigger(AnimatorStrings.jumpTrigger);
