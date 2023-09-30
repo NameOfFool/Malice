@@ -156,6 +156,8 @@ MonoBehaviour:
   DefaultSpeed: 10
   DefaultJumpForce: 10
   DefaultAirWalkSpeed: 7
+  pauseObject: {fileID: 0}
+  _paused: 0
 --- !u!114 &8744762265470690816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,6 +271,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: cae71b6d-8038-4c75-bf8a-976db5c17159
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5303801838374587216}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: onPause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 59b88489-a8e9-4c11-8429-8d8153b7f74c
+    m_ActionName: PlayerM/Pause[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerM

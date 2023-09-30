@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Player Properties")]
     public float DefaultSpeed = 10f;
-    public float DefaultJumpForce = 10f;
+    public float DefaultJumpForce = 10f;//TODO Make sword range attack and sword item
     public float DefaultAirWalkSpeed = 7f;
     private SpriteRenderer _sr;
     private Animator animator;
@@ -95,8 +95,7 @@ public class PlayerController : MonoBehaviour
     }
 
     public bool LockVelocity
-     
-     { get => animator.GetBool(AnimatorStrings.lockVelocity); }
+    { get => animator.GetBool(AnimatorStrings.lockVelocity); }
 
     public void Awake()
     {
@@ -115,7 +114,7 @@ public class PlayerController : MonoBehaviour
     }
     public void FixedUpdate()
     {
-        if(!LockVelocity)
+        if (!LockVelocity)
             rb.velocity = new(moveInput.x * CurrentMoveSpeed, rb.velocity.y);
 
         animator.SetFloat(AnimatorStrings.yVelocity, rb.velocity.y);
@@ -134,7 +133,7 @@ public class PlayerController : MonoBehaviour
     public void onMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
-        if(IsAlive)
+        if (IsAlive)
         {
             isMoving = moveInput != Vector2.zero;
             Flip();
@@ -155,6 +154,13 @@ public class PlayerController : MonoBehaviour
         if (context.started)
         {
             animator.SetTrigger(AnimatorStrings.attackTrigger);
+        }
+    }
+    public void onPause(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            
         }
     }
 }
