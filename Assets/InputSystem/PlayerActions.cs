@@ -66,7 +66,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""2D Vector"",
+                    ""name"": ""Keyboard"",
                     ""id"": ""555b2650-ec3f-4bff-a57b-d96405bbcfb1"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
@@ -122,9 +122,31 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""c41e6263-bfeb-4525-a664-70be4031d76d"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KbM"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""16ca4a50-edfe-4e95-9491-0a53f8d48911"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": ""Hold(duration=0.4,pressPoint=0.5)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5b8ff98a-5ad6-4f82-8101-73ba0fa91864"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
@@ -155,11 +177,33 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""5738640a-4b44-4e55-9c6c-6e1f5336007a"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KbM"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""2a1c91c2-7247-43ce-b7b0-11b889ef5175"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5c6f6328-7c2f-4702-825c-57db3525d960"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KbM"",
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -695,6 +739,16 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""devicePath"": ""<Mouse>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Joystick>"",
+                    ""isOptional"": true,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<DualShockGamepad>"",
                     ""isOptional"": false,
                     ""isOR"": false
                 }
