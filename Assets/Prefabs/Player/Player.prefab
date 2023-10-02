@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5166190998864196825}
   - component: {fileID: 1980333873763433164}
   - component: {fileID: 25943450582316100}
+  - component: {fileID: 5383073041408684026}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -156,8 +157,6 @@ MonoBehaviour:
   DefaultSpeed: 10
   DefaultJumpForce: 10
   DefaultAirWalkSpeed: 7
-  pauseObject: {fileID: 0}
-  _paused: 0
 --- !u!114 &8744762265470690816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,6 +286,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 59b88489-a8e9-4c11-8429-8d8153b7f74c
     m_ActionName: PlayerM/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5383073041408684026}
+        m_TargetAssemblyTypeName: InventoryController, Assembly-CSharp
+        m_MethodName: onInventoryCast
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f921677e-4b18-4dd4-9e25-ee8dfc9c2d94
+    m_ActionName: PlayerM/Inventory[/Keyboard/i]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerM
@@ -387,6 +402,20 @@ MonoBehaviour:
   invincibilityTimer: 0.25
   healthCount: {fileID: 0}
   bar: {fileID: 0}
+--- !u!114 &5383073041408684026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089540031642237468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a69b5efd13073fc458350cd9c20f21c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryUI: {fileID: 107279498247004056, guid: a038a7d62dd465b4d861d1a99fc73c22, type: 3}
+  inventorySize: 10
 --- !u!1 &5153904923467433328
 GameObject:
   m_ObjectHideFlags: 0
