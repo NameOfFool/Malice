@@ -44,7 +44,7 @@
                 {
                     "name": "Inventory",
                     "type": "Button",
-                    "id": "f921677e-4b18-4dd4-9e25-ee8dfc9c2d94",
+                    "id": "b3cb39da-bf54-4c1f-b7b1-ec42818426ba",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -197,7 +197,7 @@
                 },
                 {
                     "name": "",
-                    "id": "5bc36932-8b8a-4bb6-a5aa-3aefd1e864af",
+                    "id": "07047781-7fd1-4ff4-b71f-15db0e408aa8",
                     "path": "<Keyboard>/i",
                     "interactions": "",
                     "processors": "",
@@ -298,6 +298,15 @@
                     "type": "PassThrough",
                     "id": "cae71b6d-8038-4c75-bf8a-976db5c17159",
                     "expectedControlType": "Quaternion",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Inventory",
+                    "type": "Button",
+                    "id": "e70e26eb-7451-4b78-a967-9dbacbb6d165",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -721,6 +730,17 @@
                     "action": "TrackedDeviceOrientation",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5afca3b2-23c6-48b5-b824-692d6d6ca6a0",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
@@ -739,14 +759,15 @@
                     "devicePath": "<Mouse>",
                     "isOptional": false,
                     "isOR": false
-                },
+                }
+            ]
+        },
+        {
+            "name": "Controller",
+            "bindingGroup": "Controller",
+            "devices": [
                 {
-                    "devicePath": "<Joystick>",
-                    "isOptional": true,
-                    "isOR": false
-                },
-                {
-                    "devicePath": "<DualShockGamepad>",
+                    "devicePath": "<Gamepad>",
                     "isOptional": false,
                     "isOR": false
                 }

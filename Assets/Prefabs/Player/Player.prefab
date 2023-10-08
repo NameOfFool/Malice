@@ -300,8 +300,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: f921677e-4b18-4dd4-9e25-ee8dfc9c2d94
-    m_ActionName: PlayerM/Inventory[/Keyboard/i]
+    m_ActionId: 01fef5ad-b40b-429d-bd80-e084203a947d
+    m_ActionName: UI/Inventory[/Keyboard/i]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerM
