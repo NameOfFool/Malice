@@ -56,6 +56,7 @@ public class InventoryItem : MonoBehaviour
         if (context.started)
         {
             OnItemClicked?.Invoke(this);
+            Debug.Log("Clicked");
         }
     }
     public void OnRightClick(InputAction.CallbackContext context)
