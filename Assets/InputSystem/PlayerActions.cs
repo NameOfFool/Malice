@@ -71,6 +71,15 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Value"",
+                    ""id"": ""4078f31f-fe42-4329-9ebe-357f132cf9e7"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -227,6 +236,61 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""action"": ""Inventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""bc5e4157-c2f1-4974-974f-e4e7e303bf14"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": ""MultiTap"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Up"",
+                    ""id"": ""6fec3e20-97f1-4252-83e3-80a845afedc1"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Down"",
+                    ""id"": ""2fdcdafd-844c-46fe-9c51-fcb2c548a5b7"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Left"",
+                    ""id"": ""cf14b4ee-1aea-4993-8a57-8129a4e70fb6"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Right"",
+                    ""id"": ""325d8f6b-ca69-4d66-897b-6513583e7179"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -804,6 +868,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         m_PlayerM_Attack = m_PlayerM.FindAction("Attack", throwIfNotFound: true);
         m_PlayerM_Pause = m_PlayerM.FindAction("Pause", throwIfNotFound: true);
         m_PlayerM_Inventory = m_PlayerM.FindAction("Inventory", throwIfNotFound: true);
+        m_PlayerM_Dash = m_PlayerM.FindAction("Dash", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -883,6 +948,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerM_Attack;
     private readonly InputAction m_PlayerM_Pause;
     private readonly InputAction m_PlayerM_Inventory;
+    private readonly InputAction m_PlayerM_Dash;
     public struct PlayerMActions
     {
         private @PlayerActions m_Wrapper;
@@ -892,6 +958,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_PlayerM_Attack;
         public InputAction @Pause => m_Wrapper.m_PlayerM_Pause;
         public InputAction @Inventory => m_Wrapper.m_PlayerM_Inventory;
+        public InputAction @Dash => m_Wrapper.m_PlayerM_Dash;
         public InputActionMap Get() { return m_Wrapper.m_PlayerM; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -916,6 +983,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @Inventory.started += instance.OnInventory;
             @Inventory.performed += instance.OnInventory;
             @Inventory.canceled += instance.OnInventory;
+            @Dash.started += instance.OnDash;
+            @Dash.performed += instance.OnDash;
+            @Dash.canceled += instance.OnDash;
         }
 
         private void UnregisterCallbacks(IPlayerMActions instance)
@@ -935,6 +1005,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @Inventory.started -= instance.OnInventory;
             @Inventory.performed -= instance.OnInventory;
             @Inventory.canceled -= instance.OnInventory;
+            @Dash.started -= instance.OnDash;
+            @Dash.performed -= instance.OnDash;
+            @Dash.canceled -= instance.OnDash;
         }
 
         public void RemoveCallbacks(IPlayerMActions instance)
@@ -1103,6 +1176,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
