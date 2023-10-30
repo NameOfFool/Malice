@@ -249,7 +249,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""Up"",
+                    ""name"": ""left"",
                     ""id"": ""6fec3e20-97f1-4252-83e3-80a845afedc1"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
@@ -260,31 +260,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Down"",
+                    ""name"": ""right"",
                     ""id"": ""2fdcdafd-844c-46fe-9c51-fcb2c548a5b7"",
                     ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Dash"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Left"",
-                    ""id"": ""cf14b4ee-1aea-4993-8a57-8129a4e70fb6"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Dash"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Right"",
-                    ""id"": ""325d8f6b-ca69-4d66-897b-6513583e7179"",
-                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

@@ -11,10 +11,8 @@ public class PlayerController : MonoBehaviour
     public float DefaultSpeed = 10f;
     public float DefaultJumpForce = 10f;//TODO Make sword range attack and sword item
     public float DefaultAirWalkSpeed = 7f;
-    private SpriteRenderer _sr;
     private Animator animator;
     private Rigidbody2D rb;
-    private PlayerInput playerInput;
     private Vector2 moveInput;
     private TouchingDirections touchingDirections;
 
@@ -60,7 +58,7 @@ public class PlayerController : MonoBehaviour
                 {
                     if (touchingDirections.IsGrounded)
                     {
-                        if(dash)
+                        if (dash)
                         {
                             return DefaultSpeed * 2;
                         }
@@ -85,10 +83,8 @@ public class PlayerController : MonoBehaviour
     }
     public bool CanMove
     {
-        get
-        {
-            return animator.GetBool(AnimatorStrings.canMove);
-        }
+        get => animator.GetBool(AnimatorStrings.canMove);
+        set => animator.SetBool(AnimatorStrings.canMove, value);
     }
     public bool IsAlive
     {
@@ -99,16 +95,15 @@ public class PlayerController : MonoBehaviour
     }
 
     public bool LockVelocity
-    { get => animator.GetBool(AnimatorStrings.lockVelocity); }
+    {
+        get => animator.GetBool(AnimatorStrings.lockVelocity);
+        set => animator.SetBool(AnimatorStrings.lockVelocity, value);
+    }
     public bool dash { get => animator.GetBool(AnimatorStrings.dash); }
 
     public void Awake()
     {
-        _sr = GetComponent<SpriteRenderer>();
-
         rb = GetComponent<Rigidbody2D>();
-
-        playerInput = GetComponent<PlayerInput>();
 
         touchingDirections = GetComponent<TouchingDirections>();
 
@@ -119,8 +114,9 @@ public class PlayerController : MonoBehaviour
     }
     public void FixedUpdate()
     {
+        float yVelocity = dash? 0: rb.velocity.y;
         if (!LockVelocity)
-            rb.velocity = new(moveInput.x * CurrentMoveSpeed, rb.velocity.y);
+            rb.velocity = new(moveInput.x * CurrentMoveSpeed, yVelocity);
 
         animator.SetFloat(AnimatorStrings.yVelocity, rb.velocity.y);
     }
@@ -137,8 +133,11 @@ public class PlayerController : MonoBehaviour
     }
     public void onMove(InputAction.CallbackContext context)
     {
-        if(!dash)
+        if (!dash)
+        {
             moveInput = context.ReadValue<Vector2>();
+            Debug.Log(moveInput);
+        }
         if (IsAlive)
         {
             isMoving = moveInput != Vector2.zero;
@@ -173,6 +172,8 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
+            LockVelocity = true;
+            rb.velocity += new Vector2(context.ReadValue<Vector2>().x * DefaultSpeed * 2, rb.velocity.y);
             animator.SetBool(AnimatorStrings.dash, true);
         }
     }
