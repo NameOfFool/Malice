@@ -60,6 +60,10 @@ public class PlayerController : MonoBehaviour
                 {
                     if (touchingDirections.IsGrounded)
                     {
+                        if(dash)
+                        {
+                            return DefaultSpeed * 2;
+                        }
                         return DefaultSpeed;
                     }
                     else
@@ -96,6 +100,7 @@ public class PlayerController : MonoBehaviour
 
     public bool LockVelocity
     { get => animator.GetBool(AnimatorStrings.lockVelocity); }
+    public bool dash { get => animator.GetBool(AnimatorStrings.dash); }
 
     public void Awake()
     {
@@ -132,7 +137,8 @@ public class PlayerController : MonoBehaviour
     }
     public void onMove(InputAction.CallbackContext context)
     {
-        moveInput = context.ReadValue<Vector2>();
+        if(!dash)
+            moveInput = context.ReadValue<Vector2>();
         if (IsAlive)
         {
             isMoving = moveInput != Vector2.zero;
@@ -160,7 +166,14 @@ public class PlayerController : MonoBehaviour
     {
         if (context.started)
         {
-            
+
+        }
+    }
+    public void onDash(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            animator.SetBool(AnimatorStrings.dash, true);
         }
     }
 }
