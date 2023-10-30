@@ -114,10 +114,15 @@ public class PlayerController : MonoBehaviour
     }
     public void FixedUpdate()
     {
-        float yVelocity = dash? 0: rb.velocity.y;
         if (!LockVelocity)
-            rb.velocity = new(moveInput.x * CurrentMoveSpeed, yVelocity);
-
+        {
+            rb.velocity = new(moveInput.x * CurrentMoveSpeed, rb.velocity.y);
+        }
+        else if(dash)
+        {
+            float direction = IsFacingRight?1:-1;
+            rb.velocity = new(direction * DefaultSpeed, 0);
+        }
         animator.SetFloat(AnimatorStrings.yVelocity, rb.velocity.y);
     }
     private void Flip()
@@ -173,7 +178,6 @@ public class PlayerController : MonoBehaviour
         if (context.performed)
         {
             LockVelocity = true;
-            rb.velocity += new Vector2(context.ReadValue<Vector2>().x * DefaultSpeed * 2, rb.velocity.y);
             animator.SetBool(AnimatorStrings.dash, true);
         }
     }

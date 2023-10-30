@@ -15,7 +15,6 @@ MonoBehaviour:
   m_SupportedDevices:
   - Mouse
   - Keyboard
-  - HID
   m_UpdateMode: 2
   m_MaxEventBytesPerUpdate: 5242880
   m_MaxQueuedEventsPerUpdate: 1000
@@ -30,7 +29,7 @@ MonoBehaviour:
   m_DefaultSlowTapTime: 0.5
   m_DefaultHoldTime: 0.4
   m_TapRadius: 5
-  m_MultiTapDelayTime: 0.75
+  m_MultiTapDelayTime: 0.1
   m_DisableRedundantEventsMerging: 0
   m_ShortcutKeysConsumeInputs: 0
   m_iOSSettings:
