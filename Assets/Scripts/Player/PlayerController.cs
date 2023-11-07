@@ -141,7 +141,6 @@ public class PlayerController : MonoBehaviour
         if (!dash)
         {
             moveInput = context.ReadValue<Vector2>();
-            Debug.Log(moveInput);
         }
         if (IsAlive)
         {
@@ -179,6 +178,16 @@ public class PlayerController : MonoBehaviour
         {
             LockVelocity = true;
             animator.SetBool(AnimatorStrings.dash, true);
+        }
+    }
+    
+
+    public void OnTriggerEnter2D(Collider2D col)//TODO возможно стиоит переделать
+    {
+        if(col.tag=="Item")
+        {
+        InventoryManager.instance.Add(col.gameObject.GetComponent<ItemController>().item);
+        col.gameObject.SetActive(false);
         }
     }
 }
