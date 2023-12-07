@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CapsuleCollider2D), typeof(Animator))]
+[RequireComponent(typeof(Collider2D), typeof(Animator))]
 public class TouchingDirections : MonoBehaviour
 {
     public ContactFilter2D castFilter;
@@ -11,7 +11,7 @@ public class TouchingDirections : MonoBehaviour
     public float wallDistance = 0.2f;
     public float CeilingDistance = 0.05f;
 
-    private CapsuleCollider2D touchingCol;
+    private Collider2D touchingCol;
     private Animator animator;
 
     private RaycastHit2D[] groundHits = new RaycastHit2D[5];
@@ -57,7 +57,7 @@ public class TouchingDirections : MonoBehaviour
     }
     private void Awake()
     {
-        touchingCol = GetComponent<CapsuleCollider2D>();
+        touchingCol = GetComponent<PolygonCollider2D>();
         animator = GetComponent<Animator>();
     }
     private void FixedUpdate()

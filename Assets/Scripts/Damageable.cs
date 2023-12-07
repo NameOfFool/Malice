@@ -9,6 +9,7 @@ public class Damageable : MonoBehaviour
     protected float _currentHP;
     public UnityEvent<float, Vector2> damageableHit;
     protected Rigidbody2D rb;
+    protected Vector3 spawnPoint;
     protected Animator animator;
     public float MaxHP { get => _maxHP; set => _maxHP = value; }
     public float CurrentHP
@@ -51,6 +52,7 @@ public class Damageable : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         _currentHP = MaxHP;
+        spawnPoint = transform.position;
     }
     protected virtual void Update()
     {
@@ -62,6 +64,10 @@ public class Damageable : MonoBehaviour
                 timeSinceHit = 0;
             }
             timeSinceHit += Time.deltaTime;
+        }
+        if(transform.position.y < -2)
+        {
+            Fall();
         }
     }
     public bool Hit(float damage, Vector2 knockback, Vector3 sourcePosition) //TODO AttackAction
@@ -83,5 +89,9 @@ public class Damageable : MonoBehaviour
     public virtual void onHit(float damage, Vector2 knockback)
     {
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
+    }
+    public virtual void Fall()
+    {
+        transform.position = spawnPoint;
     }
 }
